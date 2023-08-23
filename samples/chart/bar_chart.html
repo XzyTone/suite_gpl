@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <!-- meta block -->
+    <title>Combined Chart - DHTMLX Chart</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+
+    <link rel="shortcut icon" href="../common/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../common/favicon/icon-16.png" sizes="16x16" />
+    <link rel="icon" href="../common/favicon/icon-32.png" sizes="32x32" />
+    <link rel="icon" href="../common/favicon/icon-48.png" sizes="48x48" />
+    <link rel="icon" href="../common/favicon/icon-96.png" sizes="96x96" />
+    <link rel="icon" href="../common/favicon/icon-144.png" sizes="144x144" />
+    <!-- end meta block -->
+    <script type="text/javascript" src="../../codebase/suite.js?v=8.1.9"></script>
+    <link rel="stylesheet" href="../../codebase/suite.css?v=8.1.9">
+
+    <link rel="stylesheet" href="../common/index.css?v=8.1.9">
+    <!-- custom sample head -->
+</head>
+<body>
+<header class="dhx_sample-header">
+</header>
+<section class="dhx_sample-container">
+    <div id="donutChart" style="width: 50%; padding: 20px; display: inline-block;"></div>
+	<div id="lineChart" style="width: 33%; padding: 20px; display: inline-block;"></div>
+    <div id="barChart" style="width: 50%; padding: 20px; display: inline-block;"></div>
+	<div id="radarChart" style="width: 33%; padding: 20px; display: inline-block;"></div>
+</section>
+<script>
+    // Donut Chart Data and Config
+    const pieData = [
+        { id: "Jan", value: 44.33, color: "#394E79", month: "Jan" },
+        { id: "Feb", value: 22.12, color: "#5E83BA", month: "Feb" },
+        { id: "Mar", value: 53.21, color: "#C2D2E9", month: "Mar" },
+        { id: "Apr", value: 34.25, color: "#9A8BA5", month: "Apr" },
+        { id: "May", value: 24.65, color: "#E3C5D5", month: "May" }
+    ];
+    const donutConfig = {
+        type: "donut",
+        css: "dhx_widget--bordered",
+        series: [
+            {
+                value: "value",
+                color: "color",
+                text: "month"
+            }
+        ],
+        legend: {
+            values: {
+                id: "value",
+                text: "id",
+                color: "color"
+            },
+            halign: "right",
+            valign: "top"
+        }
+    };
+    const donutChart = new dhx.Chart("donutChart", donutConfig);
+    donutChart.data.parse(pieData);
+
+    // Bar Chart Data and Config
+    const companiesData = [
+        { month: "01", "company A": 20, "company B": 52, "company C": 72, "company D": 34 },
+        { month: "02", "company A": 5, "company B": 33, "company C": 90, "company D": 55 },
+        { month: "03", "company A": 55, "company B": 30, "company C": 81, "company D": 66 },
+        { month: "04", "company A": 30, "company B": 11, "company C": 62, "company D": 22 },
+        { month: "05", "company A": 27, "company B": 14, "company C": 68, "company D": 70 },
+        { month: "06", "company A": 32, "company B": 31, "company C": 64, "company D": 50 },
+    ];
+    const barConfig = {
+        type: "bar",
+        css: "dhx_widget--bordered",
+        scales: {
+            "bottom": {
+                text: "month"
+            },
+            "left": {
+                maxTicks: 10,
+                max: 100,
+                min: 0
+            }
+        },
+        series: [
+            {
+                id: "A",
+                value: "company A",
+                color: "#81C4E8",
+                fill: "#81C4E8"
+            },
+            {
+                id: "B",
+                value: "company B",
+                color: "#74A2E7",
+                fill: "#74A2E7"
+            },
+            {
+                id: "C",
+                value: "company C",
+                color: "#5E83BA",
+                fill: "#5E83BA"
+            }
+        ],
+        legend: {
+            series: ["A", "B", "C"],
+            halign: "right",
+            valign: "top",
+            size: 60
+        }
+    };
+    const barChart = new dhx.Chart("barChart", barConfig);
+    barChart.data.parse(companiesData);
+
+	    // Radar Chart Data and Config
+		const radarData = [
+		{ month: "02", "company A": 20, "company B": 52, "company C": 72, "company D": 34 },
+				{ month: "03", "company A": 5, "company B": 33, "company C": 90, "company D": 55 },
+				{ month: "04", "company A": 55, "company B": 30, "company C": 81, "company D": 66 },
+				{ month: "05", "company A": 30, "company B": 11, "company C": 62, "company D": 22 },
+				{ month: "06", "company A": 27, "company B": 14, "company C": 68, "company D": 70 },
+				{ month: "07", "company A": 32, "company B": 31, "company C": 64, "company D": 50 },
+				{ month: "08", "company A": 50, "company B": 22, "company C": 30, "company D": 80 },
+				{ month: "09", "company A": 12, "company B": 19, "company C": 65, "company D": 48 },
+				{ month: "10", "company A": 10, "company B": 24, "company C": 50, "company D": 66 },
+				{ month: "11", "company A": 17, "company B": 40, "company C": 78, "company D": 55 }
+			];
+			const radarConfig = {
+				type: "radar",
+				css: "dhx_widget--bordered",
+				scales: {
+					"radial": {
+						value: "month",
+						maxTicks: 10
+					}
+				},
+				series: [
+					{
+						id: "A",
+						value: "company A",
+						color: "#81C4E8",
+						pointColor: "#81C4E8"
+					},
+					{
+						id: "B",
+						value: "company B",
+						color: "#74A2E7",
+						pointColor: "#74A2E7"
+					},
+					{
+						id: "C",
+						value: "company C",
+						color: "#5E83BA",
+						pointColor: "#5E83BA"
+					}
+				],
+				legend: {
+					series: ["A", "B", "C"],
+					halign: "right",
+					valign: "top"
+				}
+			};
+    const radarChart = new dhx.Chart("radarChart", radarConfig);
+    radarChart.data.parse(radarData);
+	
+	const config = {
+    type: "line",
+    css: "dhx_widget--bg_white dhx_widget--bordered",
+    legend: {
+        series: ["A", "B", "C", "D"],
+        valign: "middle",
+        size: 150,
+        halign: "right"
+    },
+    scales: {
+        "bottom": {
+            text: "month",
+        },
+        "left": {
+            maxTicks: 10,
+            max: 100,
+            size: 50,
+            targetLine: 80,
+        }
+    },
+    series: [
+        {
+            id: "A",
+            value: "company A",
+            color: "#5E83BA"
+        },
+        {
+            id: "B",
+            value: "company B",
+            color: "#98A468"
+        },
+        {
+            id: "C",
+            value: "company C",
+            color: "#9A8BA5"
+        },
+        {
+            id: "D",
+            value: "company D",
+            color: "#EEB98E"
+        }
+    ]
+};
+
+const lineChart = new dhx.Chart("lineChart", config);
+lineChart.data.parse(companiesData);
+</script>
+</body>
+</html>
